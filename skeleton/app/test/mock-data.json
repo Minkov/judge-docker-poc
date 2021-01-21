@@ -1,0 +1,46 @@
+[
+    {
+        "authorEmail": "peter@abv.bg",
+        "created": 1605635871000,
+        "___class": "articles",
+        "category": "C#",
+        "title": "Arrays",
+        "ownerId": "0002",
+        "updated": 1605636768000,
+        "objectId": "0001",
+        "content": "Content1"
+    },
+    {
+        "authorEmail": "john@abv.bg",
+        "created": 1605637213000,
+        "___class": "articles",
+        "category": "Java",
+        "title": "HashMap",
+        "ownerId": "0002",
+        "updated": null,
+        "objectId": "0003",
+        "content": "Content2"
+    },
+    {
+        "authorEmail": "peter@abv.bg",
+        "created": 1605636018000,
+        "___class": "articles",
+        "category": "JavaScript",
+        "title": "Ajax",
+        "ownerId": "0002",
+        "updated": null,
+        "objectId": "0004",
+        "content": "Content3"
+    },
+    {
+        "authorEmail": "peter@abv.bg",
+        "created": 1605625098000,
+        "___class": "articles",
+        "category": "JavaScript",
+        "title": "Objects",
+        "ownerId": "0002",
+        "updated": null,
+        "objectId": "0005",
+        "content": "Content4"
+    }
+]

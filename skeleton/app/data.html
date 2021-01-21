@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Data Layer Test</title>
+    <script type="module">
+        import * as api from './src/api/data.js';
+        window.api = api;
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="nav">
+        <h1><a class="home" href="/">SoftWiki</a></h1>
+
+    </header>
+
+    <div id="notifications">
+        <div id="successBox" class="alert alert-success" role="alert">{Success Message...}</div>
+        <div id="loadingBox" class="alert alert-info" role="alert">Loading...</div>
+        <div id="errorBox" class="alert alert-danger" role="alert">{Error Message...}</div>
+    </div>
+
+    <div id="wrapper">
+
+        <!-- Managed content -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer>My Site © Show info....</footer>
+</body>
+
+</html>

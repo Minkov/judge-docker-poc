@@ -1,0 +1,29 @@
+#notifications {
+    position: fixed;
+    top: 48px;
+    right: 0px;
+}
+
+#successBox, #loadingBox, #errorBox {
+    display: none;
+    text-align: center;
+}
+
+.alert {
+    color: white;
+    width: 300px;
+    padding: 1em 2em;
+    font-size: 1.2em;
+}
+
+.alert-success {
+    background-color: #4c9163;
+}
+
+.alert-info {
+    background-color: #2a79a7;
+}
+
+.alert-danger {
+    background-color: #b33333;
+}
