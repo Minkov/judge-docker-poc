@@ -1,55 +1,51 @@
-import shutil
-import tarfile
-from os import chdir, remove
-from os.path import dirname, join, basename
-
 import docker
+import subprocess
 
-
-def copy_to_container(container, source, destination):
-    chdir(dirname(source))
-    local_dest_name = join(dirname(source), basename(destination))
-    if local_dest_name != source:
-        shutil.copy2(source, local_dest_name)
-    dst_name = basename(destination)
-    tar_path = local_dest_name + '.tar'
-
-    tar = tarfile.open(tar_path, mode='w')
-    try:
-        tar.add(dst_name)
-    finally:
-        tar.close()
-
-    data = open(tar_path, 'rb').read()
-    container.put_archive(dirname(destination), data)
-
-    remove(tar_path)
-    remove(local_dest_name)
+mocha_path = 'C:\\Users\\User\\Documents\\js-exam\\node_modules\\.bin\\mocha.cmd'
+tests_path = 'C:\\Users\\User\\Documents\\js-exam\\test'
+image_name = 'nginx'
+path_to_project = 'C:\\Users\\User\\Documents\\projects\\judge-docker-poc\\skeleton\\app'
+path_to_nginx_conf = 'C:\\Users\\User\\Documents\\projects\\judge-docker-poc\\skeleton\\nginx.conf'
+port = 8546
 
 
 class DockerExecutor:
-    code_file_path = None
-    image_name = 'nginx'
-
     def __init__(self):
         self.client = docker.from_env()
         self.container = self.client.containers.create(
-            image=self.image_name,
-            command=f'sh -c "tail -f /dev/null"',
-            ports={'80/tcp': 8082},
+            image=image_name,
+            ports={'80/tcp': port},
             volumes={
-                '/home/doncho/repos/judge-strategies/docker-strategy/skeleton/nginx.conf': {
+                path_to_nginx_conf: {
                     'bind': '/etc/nginx/nginx.conf',
                     'mode': 'ro',
                 },
-                '/home/doncho/repos/judge-strategies/docker-strategy/skeleton/app': {
+                path_to_project: {
                     'bind': '/usr/share/nginx/html',
                     'mode': 'ro',
                 },
             },
         )
+
+    def start(self):
         self.container.start()
-        pass
+
+    def stop(self):
+        self.container.stop()
+        self.container.wait()
+        self.container.remove()
 
 
-DockerExecutor()
+executor = DockerExecutor()
+
+executor.start()
+
+commands = [mocha_path, tests_path, '-R', 'min']
+
+process = subprocess.run(
+    commands,
+    capture_output=True
+)
+
+
+executor.stop()
